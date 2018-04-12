@@ -7,16 +7,11 @@ import traceback
 from bs4 import BeautifulSoup
 from selenium import webdriver
 
-
-
-
 errorLog = 'errorlog.txt'
 error=open(errorLog,'a')
 #dest.writelines("test route")
 class CrawlData:
     def getPageFromYuanwen(self):
-        Mapfile = 'map.txt'
-        Map = open(Mapfile, 'a', encoding='utf-8')
         for i in range(88,217):
             try:
                 headers = {
@@ -57,7 +52,6 @@ class CrawlData:
                         pass
             except Exception :
                 error.writelines('Errors occur on page '+str(i) +'\n')
-        Map.close()
 if __name__ == '__main__':
     one_Instance = CrawlData()
     one_Instance.getPageFromYuanwen()
