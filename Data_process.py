@@ -56,7 +56,7 @@ for lines in origin_file:
         #explanation是解释
         explanation = re.findall(res_tr3, lines, re.S | re.M)
         # print(explanation)
-        return_str = return_str+'\n'+explanation[0]
+        return_str = return_str+'\n'+explanation[0]+'\n'
     if len(temp2):
         next_word = True
         data_2[single_word] = return_str
