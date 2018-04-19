@@ -41,6 +41,7 @@ class CrawlData:
                 shiyi = shiyi[0::2]
                 # print(type(shiyi))
                 file.writelines(wenzi + '\n')
+                print(shiyi)
                 for j in shiyi:
                     file.writelines('  ' + j + '\n')
                 success = True

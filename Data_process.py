@@ -1,7 +1,7 @@
 import os
 import re
 import pickle
-origin_file = open("Dict_data/eywedu.txt",'r')
+origin_file = open("Dict_data/eywedu - 副本 (2).txt",'r')
 words_file = open("Dict_data/words.txt",'a')
 # output2 = open('Dict_data/danci.pkl', 'wb')
 output1 = open('Dict_data/cixing.pkl', 'wb')
@@ -26,17 +26,19 @@ test2 = '''一
   '''
 #单词释义
 res_tr1 = r'【(.*?)】(.*)。'
+
 #扣关键字
 res_tr2 = r'([\u4e00-\u9fa5])\n'
 #扣解释，需要多行连在一起
 res_tr3 = r'(.*)”'
-
+res_tr4 = r'\b[a-z]*[āáǎàōóǒòêēéěèīíǐìūúǔùǖǘǚǜüńňǹɑɡ]+[a-z]*\b'
 # data_1 = {}
 data_2 = {}
 next_word = False
 for lines in origin_file:
     #temp是关键字
     temp = re.findall(res_tr2, lines, re.S | re.M)
+    pinyin = re.findall(res_tr4,lines,re.S|re.M)
     #temp2是单词释义
     temp2 = re.findall(res_tr1, lines, re.S | re.M)
     explanation = re.findall(res_tr3, lines, re.S | re.M)
@@ -45,6 +47,11 @@ for lines in origin_file:
         next_word = False
         return_str = ''
         continue
+    if pinyin:
+        temp = ''
+        for item in pinyin:
+            temp += item
+        return_str = return_str+temp
     if next_word == False and len(explanation):
         #explanation是解释
         explanation = re.findall(res_tr3, lines, re.S | re.M)
